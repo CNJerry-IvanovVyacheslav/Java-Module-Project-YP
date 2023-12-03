@@ -23,15 +23,28 @@ public class Main {
     // Создает список товаров и их общую стоимость
     public static void calculate() {
         double cost = 0.00;
-        while (scanner.hasNext()) {
+        String productLine = "";
+        while (true) {
             System.out.println("Какой товар вы купили?");
+
             String product = scanner.next();
-            if (product.equalsIgnoreCase("Завершить")) {
-                break;
-            }
+            productLine = productLine + " " + product;
+            System.out.println("Товар " + product + " успешно добавлен в список!");
+
             System.out.println("Сколько это стоило?");
             cost = cost + scanner.nextDouble();
+
+            System.out.println("Желаете добавить новый товар?");
+            String isEnough = scanner.next();
+            if (isEnough.equalsIgnoreCase("Завершить")) {
+                System.out.println("Ваш список покупок состоит из: " + productLine + ". Общей стоимостью: " + cost + " рублей.");
+                break;
+            }
         }
+
+
+
+
 
     }
 
