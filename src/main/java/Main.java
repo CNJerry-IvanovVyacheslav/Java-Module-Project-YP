@@ -13,6 +13,7 @@ public class Main {
 
     // Проверяет на сколько человек разделить счет
     public static void checkYourFriends() {
+        Calculate calculate = new Calculate();
         System.out.println("На сколько человек разбить счет?");
         int howManyFriends = 0;
         while (howManyFriends <= 2) {
@@ -21,51 +22,33 @@ public class Main {
                 System.out.println("Нет смысла делить счет когда вы одни! Попробуйте другое число.");
             } else if (howManyFriends <= 0) {
                 System.out.println("Нарушены законы физики! Прекратите! Введите реальное число людей.");
-            } else {calculate(); allFriends = howManyFriends; } // добавить цикл?
+            } else {Calculate.calculate(); allFriends = howManyFriends; } // добавить цикл?
 
         }
 
     }
 
-  public static void calculate() {  // Создает список товаров и их общую стоимость
-      double cost = 0.00;
-      String productLine = "";
-
-          while (true) {
-              System.out.println("Какой товар вы купили?");
-
-              String product = scanner.next();
-              productLine = productLine + " \n" + product;
-              System.out.println("Товар " + product + " успешно добавлен в список!");
-
-              System.out.println("Сколько это стоило?");
-              cost = cost + scanner.nextDouble();
-
-              System.out.println("Желаете добавить новый товар?");
-              String isEnough = scanner.next();
-              if (isEnough.equalsIgnoreCase("Завершить")) {
-                  System.out.println("Ваш список покупок состоит из: " + productLine + ".\nОбщей стоимостью: " + cost + " рублей.");
-                  allCost = cost;
-                  break;
-              }
-          }
-
-  }
-        public static void result() {
+        public static String result() {
             double equallySum = allCost / allFriends;
-            double equallySumInt = Math.floor(equallySum);
-            String rub = " рубль.";
-            String rubs = " рублей.";
-
-
-        /*   if (equallySum %= 1) {System.out.println("Сумма, которую должен заплатить каждый = " + equallySum + " рубль.");
-             } else { System.out.println("Сумма, которую должен заплатить каждый = " + equallySum + " рублей.");} */
+            var rounding = String.format("%.2f", equallySum);
+            var equallySumToInteger = Math.floor(equallySum);
+            var endingOfWords = getEndingOfWords(equallySumToInteger);
+            return rounding + "рубл" + endingOfWords;
 
         }
 
-
+        public static String getEndingOfWords(double equallySumToInteger) {
+        if (equallySumToInteger % 10 == 1) {
+            return "ь";
+        } else if (equallySumToInteger % 10 == 2 || equallySumToInteger % 10 == 3 || equallySumToInteger % 10 == 4) {
+            return "я";
+        } else {
+            return "ей";
+        }
+    }
 
 
 
 
 }
+
