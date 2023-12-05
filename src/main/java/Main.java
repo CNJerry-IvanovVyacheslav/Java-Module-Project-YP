@@ -21,7 +21,7 @@ public class Main {
                 System.out.println("Нет смысла делить счет когда вы одни! Попробуйте другое число.");
             } else if (howManyFriends <= 0) {
                 System.out.println("Нарушены законы физики! Прекратите! Введите реальное число людей.");
-            } else {Calculate.calculate(); allFriends = howManyFriends; } // добавить цикл?
+            } else {allFriends = howManyFriends; Calculate.calculate();} // добавить цикл?
 
         }
 
