@@ -5,15 +5,17 @@ public class Main {
     static int allFriends;
 
     public static void main(String[] args) {
-
         checkYourFriends();
         Calculate.result();
     }
 
     // Проверяет на сколько человек разделить счет
     public static void checkYourFriends() {
-        Calculate calculate = new Calculate();
         System.out.println("На сколько человек разбить счет?");
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Введена не цифра! Повторите ввод.");
+            }
         int howManyFriends = 0;
         while (howManyFriends <= 2) {
             howManyFriends = scanner.nextInt();
@@ -21,9 +23,7 @@ public class Main {
                 System.out.println("Нет смысла делить счет когда вы одни! Попробуйте другое число.");
             } else if (howManyFriends <= 0) {
                 System.out.println("Нарушены законы физики! Прекратите! Введите реальное число людей.");
-            } else {allFriends = howManyFriends; Calculate.calculate();} // добавить цикл?
-
+            } else {allFriends = howManyFriends; Calculate.calculate();}
         }
-
     }
 }

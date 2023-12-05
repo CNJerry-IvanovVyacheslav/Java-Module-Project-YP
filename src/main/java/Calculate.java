@@ -1,41 +1,49 @@
 // Создает список товаров и их общую стоимость
-
 import java.util.Scanner;
 
 public class Calculate {
-    static double allCost;
 
+    static double allCost;
     private static final Scanner scanner = new Scanner(System.in);
+
     // инициация товаров и расчет их общей стоимости
     public static void calculate() {
 
-        String productLine = "";
+        StringBuilder productLine = new StringBuilder();
         String yourProduct;
 
         while (true) {
             System.out.println("Какой товар вы купили?");
-
             yourProduct = scanner.next();
-            productLine = productLine + " \n" + yourProduct;
-            System.out.println("Товар " + yourProduct + " успешно добавлен в список!");
 
-            System.out.println("Сколько это стоило?");
-            if (!scanner.hasNextInt()) {
-                System.out.println("Введена не цифра! повторите ввод.");
+            if (yourProduct.isEmpty()) {
+                System.out.println("Товар не должен быть пустым!");
+            } else if (yourProduct.trim().isEmpty()) {
+                System.out.println("Товар не должен состоять только из пробелов!");
             }
-                System.out.println("Введена отрицательная стоимость. Повторите еще раз.");
+            productLine.append(" \n").append(yourProduct);
+            System.out.println("Товар " + yourProduct + " успешно добавлен в список!");
+            System.out.println("Сколько это стоило?");
 
-                allCost += scanner.nextDouble();
+            while (!scanner.hasNextInt()) {
+                scanner.next();
+                System.out.println("Введена не цифра! Повторите ввод.");
+            }
+            double cost = scanner.nextDouble();
 
+             while (cost < 0)  {
+                 System.out.println("Введена отрицательная стоимость. Повторите еще раз.");
+                 cost = scanner.nextDouble();
+             }
+            allCost += cost;
                 System.out.println("Желаете добавить новый товар?");
                 String isEnough = scanner.next();
+
                 if (isEnough.equalsIgnoreCase("Завершить")) {
                     System.out.println("Ваш список покупок состоит из: " + productLine + ".\nОбщей стоимостью: " + allCost + " рубл" + getEndingOfWords(allCost));
                     result();
                     break;
                 }
-
-
         }
     }
     // финальный расчет, сколько необходимо заплатить каждому человеку
@@ -44,7 +52,6 @@ public class Calculate {
         var equallySumToInteger = Math.floor(equallySum);
         var endingOfWords = getEndingOfWords(equallySumToInteger);
         System.out.println("Всем необходимо заплатить по " + equallySum + " рубл" + endingOfWords);
-
     }
 
     // функция для добавления правильного окончания
