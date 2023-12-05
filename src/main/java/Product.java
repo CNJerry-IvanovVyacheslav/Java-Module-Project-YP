@@ -1,4 +1,4 @@
 public class Product {
-    static double cost;
+    double cost;
     String product;
 }

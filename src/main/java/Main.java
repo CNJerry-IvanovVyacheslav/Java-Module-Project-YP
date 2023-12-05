@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-
     static int allFriends;
-    static double allCost;
+
     public static void main(String[] args) {
 
         checkYourFriends();
-        result();
+        Calculate.result();
     }
 
     // Проверяет на сколько человек разделить счет
@@ -27,28 +26,4 @@ public class Main {
         }
 
     }
-
-        public static String result() {
-            double equallySum = allCost / allFriends;
-            var rounding = String.format("%.2f", equallySum);
-            var equallySumToInteger = Math.floor(equallySum);
-            var endingOfWords = getEndingOfWords(equallySumToInteger);
-            return rounding + "рубл" + endingOfWords;
-
-        }
-
-        public static String getEndingOfWords(double equallySumToInteger) {
-        if (equallySumToInteger % 10 == 1) {
-            return "ь";
-        } else if (equallySumToInteger % 10 == 2 || equallySumToInteger % 10 == 3 || equallySumToInteger % 10 == 4) {
-            return "я";
-        } else {
-            return "ей";
-        }
-    }
-
-
-
-
 }
-
