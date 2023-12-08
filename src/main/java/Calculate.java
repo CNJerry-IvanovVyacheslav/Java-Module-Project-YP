@@ -47,6 +47,7 @@ public class Calculate {
                 break;
             }
         }
+
     }
 
     // финальный расчет, сколько необходимо заплатить каждому человеку
@@ -55,19 +56,22 @@ public class Calculate {
         var equallySumToInteger = Math.floor(equallySum);
         //
         var endingOfWords = getEndingOfWords(equallySumToInteger);
-        System.out.println("Всем необходимо заплатить по " + String.format("%.2f", equallySum) + " рубл" + endingOfWords);
+        System.out.println("Каждому необходимо заплатить: " + String.format("%.2f", equallySum) + " рубл" + endingOfWords);
+
     }
 
     // функция для добавления правильного окончания
     public static String getEndingOfWords(double equallySumToInteger) {
-        if (equallySumToInteger % 10 == 1) {
-            return "ь";
+        if (equallySumToInteger % 100 >= 11 && equallySumToInteger % 100 <= 14) {
+            return "ей";
         } else if (equallySumToInteger % 10 == 2 || equallySumToInteger % 10 == 3 || equallySumToInteger % 10 == 4) {
             return "я";
-        } else if (equallySumToInteger % 100 >= 11 && equallySumToInteger % 100 <= 14) {
-            return "ей";
+        } else if (equallySumToInteger % 10 == 1) {
+            return "ь";
         } else {
             return "ей";
         }
     }
 }
+
+

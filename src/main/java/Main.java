@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         checkYourFriends();
 
+
     }
 
     // Проверяет на сколько человек разделить счет
@@ -26,6 +27,8 @@ public class Main {
             } else {
                 allFriends = howManyFriends;
                 Calculate.calculate();
+                break;
+
             }
         }
     }
